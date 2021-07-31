@@ -4,7 +4,7 @@
 using namespace std;
 
 //Bottom Up solution
-
+//slightly optimised than top down
 int getMinCost(vector<int> stones) {
 	int n = stones.size();
 	vector<int> dp(n, 0);
@@ -20,6 +20,11 @@ int getMinCost(vector<int> stones) {
 }
 
 int main() {
+
+/*Sample Input
+6
+30 10 60 10 60 50
+*/
 
 	int n;
 	cin>>n;
