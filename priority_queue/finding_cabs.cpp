@@ -17,10 +17,33 @@ public:
 		this -> x = x;
 		this -> y = y;
 	}
+	int dist() {
+		return x*x + y*y; //square of the dist
+	}
 };
+
+
+class CarCompare {
+	//operator overloading
+	bool operator()(const Car A, const Car B){
+		return A.dist() < B.dist(); //max heap
+	}
+}
 
 void printNearestCars(vector<Car> cars, int k) {
 
+
+	//create a max heap of size k
+	priority_queue<Car, vector<Car>, CarCompare> maxheap(cars.begin(), cars.begin()+k);
+
+	//remaining cars
+	for(int i=k; i < cars.size(); i++) {
+		auto car = cars[i];
+
+		if(car.size) {
+
+		}
+	}
 }
 
 int main() {
