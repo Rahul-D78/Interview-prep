@@ -1,68 +1,65 @@
 #include<iostream>
-#include<list>
+#include<map>
+#include <list>
 #include <queue>
 using namespace std;
 
+template <typename T>
+
 class Graph {
-	int v;
-	//l is a list of pointers where each element in the array is a list
-	list<int> *l;
 public:
-	Graph(int v) {
-		this -> v = v;
-		l = new list<int>[v];
-	}
+    map<T ,list<T> > l;
 
-	void addEdge(int x, int y) {
-		l[x].push_back(y);
-		l[y].push_back(x);
-	}
-	void adjList() {
-		//iterate over all the vertices 
-		//for every linked list we keep a variable called nbr
-		//iterate over ith linked list
-		for(int i=0; i< v;i++) {
-			cout<<"vertex "<<i<<" -->";
-			for(auto nbr: l[i]) {
-				cout<<nbr<<",";
-			}
-			cout<<endl;
-		}
-	}
-	void bfs(int src) {
-		//data structures
-		//1. queue
-		//2. visited array
-		queue<int> q;
-		bool* visited = new bool[v]{0};
+    void addEdge(int x, int y) {
+        l[x].push_back(y);
+        l[y].push_back(x);
+    }
+    void bfs(T src) {
+        /* DataStructures needed
+           1. queue
+           2. visited array
+        */
+        //stores the value of a node with a coresponding boolean value 
+        //to check weather it is visited or not .
+        map<T, int> visited;
+        //functionality is mainly depens of this ds
+        //when we are entering inside the while loop we are fetching the node 
+        //from the frontend and poping outside of queue and printing it and 
+        //inside the for loop we are l[node] and printing the nodes are which
+        //are connected to that node .
+        // 1 --> [2, 3, 4, 5];
+        // 2 --> [5, 5, 6, 7];  something like this we have done in the addEdge function
+        queue<T> q;
 
-		q.push(src);
-		visited[src] = true;
+        q.push(src);
+        visited[src] = true;
 
-		while(!q.empty()) {
-			int f = q.front();
-			q.pop();
-			cout<<f<<" ";
-			//visit it's neighbour elements
-			for(int nbr: l[f]) {
-				if(!visited[nbr]) {
-					q.push(nbr);
-					visited[nbr] = true;
-				}
-			}
-		}
-	}
+        while(!q.empty()) {
+            
+            //get front of the node and print
+            T node = q.front();
+            q.pop();
+            cout<<node<<" ";
+
+            for(auto nbr: l[node]) {
+                //l[node] basically give me the value of that node
+                if(!visited[nbr]) {
+                    q.push(nbr);
+                    visited[nbr] = true;
+                }
+            }
+        }
+    }
+
 };
 
 int main() {
-	Graph g(4);
-	g.addEdge(0, 1);
-	g.addEdge(0, 3);
-	g.addEdge(1, 2);
-	g.addEdge(2, 3);
-	g.addEdge(3, 4);
-	g.addEdge(4, 5);
-	// g.adjList();
-	g.bfs(0);
-	return 0;
+    Graph<int> g;
+    g.addEdge(0, 1);
+    g.addEdge(1, 2);
+    g.addEdge(2, 3);
+    g.addEdge(3, 4);
+    g.addEdge(4, 5);
+    g.bfs(0);
+    return 0;
 }
