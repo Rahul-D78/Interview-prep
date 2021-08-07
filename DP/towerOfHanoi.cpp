@@ -12,7 +12,7 @@ void towerOfHanoi(int n, char src, char helper, char dest) {
 
 	//Rec case
 	//1st step (N-1) disks move from src to helper
-	towerOfHanoi(n-1, src, dest, helper);
+	towerOfHanoi(n-1, src, helper, dest);
 
 	cout<<"Move "<<n<<" from "<<src<<" to "<<dest<<endl;
 
@@ -25,7 +25,7 @@ int main() {
 	int n;
 	cin>>n;
 
-	cout<<towerOfHanoi(n, 'A', 'C', 'B');
+	towerOfHanoi(n, 'A', 'C', 'B');
 
 	return 0;
 

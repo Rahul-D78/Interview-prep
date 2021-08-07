@@ -45,7 +45,7 @@ bool search(Node* root, int key) {
 }
 
 
-//build the bst in case of a given sorted array
+//build the bst in case of a given sorted array 
 Node* sortedArryToBst(int arr[], int s, int e) {
 	if(s > e) {
 		return NULL;
