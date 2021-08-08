@@ -16,6 +16,7 @@ public:
 
 //LRU cache implementation
 class LRUCache {
+public:
 	//to define the max num of elements
 	int maxsize;
 	list<Node> l;
@@ -28,7 +29,7 @@ class LRUCache {
 		this -> maxsize = maxsize > 1 ? maxsize : 1;
 	}
 
-	void insert(string key, int value) {
+	void insertKeyValue(string key, int value) {
 		//present or not present
 		if(m.count(key)!=0) {
 			//replace the old value
@@ -53,17 +54,44 @@ class LRUCache {
 		}
 	}
 
-	int getValue(int key) {
-
+	int* getValue(string key) {
+		if(m.count(key)!=0) {
+			auto it = m[key];
+			int value = it -> value;
+			l.push_front(*it);
+			l.erase(it);
+			m[key] = l.begin();
+			return &l.begin() -> value;
+		}
+		return NULL;
 	}
 
 	string mostRecentKey() {
-
+		return l.front().key;
 	}
 
 };
 
 int main() {
-
+	LRUCache lru(3);
+	lru.insertKeyValue("mango", 10);
+	lru.insertKeyValue("apple", 20);
+	lru.insertKeyValue("guava", 30);
+	cout<<lru.mostRecentKey()<<endl;
+	lru.insertKeyValue("mango", 40);
+	cout<<lru.mostRecentKey()<<endl;
+	lru.insertKeyValue("banana", 20);
+	if(lru.getValue("apple")==NULL) {
+		cout<<"apple does not exists";
+	}
+	if(lru.getValue("mango")==NULL) {
+		cout<<"mango does not exists";
+	}
+	if(lru.getValue("guava")==NULL) {
+		cout<<"guava does not exists";
+	}
+	if(lru.getValue("banana")==NULL) {
+		cout<<"banana does not exists";
+	}
 	return 0;
 }
