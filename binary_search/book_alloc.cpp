@@ -49,7 +49,7 @@ ll binarySearchBooks(ll books[], ll n, ll k) {
 
 	while(s <= e) {
 		ll mid = (s+e)/2;
-		//we are passing the current mid because if current mid is the and I have to check if 
+		//we are passing the current mid because if current mid is the ans and I have to check if 
 		//that is a valid configuration or not
 		if(isValid(books, n, k, mid)) {
 			// we have to search in the left part for true and viceversa
