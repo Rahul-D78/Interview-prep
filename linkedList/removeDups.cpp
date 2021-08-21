@@ -53,17 +53,32 @@ Node* removeDups(Node*&head) {
 	}
 }
 
+Node* removeDupsNoBuffer(Node* head) {
+	Node* curr = head;
+	while(curr != NULL) {
+		Node* runner = curr;
+		while(runner -> next != NULL) {
+			if(runner -> next -> data == runner -> data) {
+				runner -> next = runner -> next -> next;
+			}else {
+				runner = runner -> next;
+			}
+		}
+		curr = curr -> next;
+	}
+}
+
 int main() {
 	Node* head = NULL;
 	insertAtHead(head, 3);
 	insertAtHead(head, 3);
 	insertAtHead(head, 2);
 	insertAtHead(head, 1);
-	// cout<<"list before removing duplicates"<<endl;
-	// printLL(head);
-	// // removeDups(head);
-	// cout<<"list after removing duplicates"<<endl;
-	// printLL(head);
+	cout<<"list before removing duplicates"<<endl;
+	printLL(head);
+	removeDupsNoBuffer(head);
+	cout<<"list after removing duplicates"<<endl;
+	printLL(head);
 	
 	return 0;
 }
