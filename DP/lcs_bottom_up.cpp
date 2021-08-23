@@ -22,6 +22,15 @@ int lcs_bu(string s1, string s2) {
 			}
 		}
 	}
+
+	//print the matrinx
+	for(int i =0; i<= n1 ;i++) {
+		for(int j =0; j<=n2; j++) {
+			cout<<dp[i][j]<<" ";
+		}
+		cout<<endl;
+	}
+
 	return dp[n1][n2];
 }
 
