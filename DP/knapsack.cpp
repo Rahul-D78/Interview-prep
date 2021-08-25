@@ -24,6 +24,9 @@ int knapsackTD(vector<int> wts, vector<int> prices, int N, int W) {
 	return max(inc, exc);
 }
 
+Time = O(NW)
+
+
 int knapsackBU(vector<int> wts, vector<int> prices, int N, int W) {
 	vector<vector<int> > dp(N+1, vector<int>(W+1, 0));
 

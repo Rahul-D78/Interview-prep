@@ -77,8 +77,9 @@ void print(Node* root) {
 void showList() {
 	list<int> :: iterator it;
 	for(it = l.begin(); it != l.end(); it++) {
-		cout<<*it;
+		cout<<*it<<"-->";
 	}
+	cout<<"NULL";
 }
 
 int main() {

@@ -112,6 +112,25 @@ void print(Node* root) {
 	return;
 }
 
+void printIn(Node* root) {
+	if(root == NULL) {
+		return;
+	}
+	printIn(root->left);
+	cout<<root->data<<",";
+	printIn(root->right);
+	return;
+}
+
+void printPost(Node* root) {
+	if(root == NULL) {
+		return;
+	}
+	printPost(root->left);
+	printPost(root->right);
+	cout<<root->data<<",";
+	return;
+}
 
 //largest distance between any two nodes in a tree
 int diameter(Node* root) {
